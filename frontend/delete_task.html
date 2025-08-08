@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+ <head>
+    <title>PERSONAL TASK MANAGER</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/delete_task.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Calistoga' rel='stylesheet'>
+
+ </head>
+ <body>
+    <div class = "nav-bar">
+        <a href = "/home">
+         <img src = "{{url_for('static',filename='images/home.png')}}" class="home-pic">
+        </a>
+        <a href = "/profile_page">
+         <img src = "{{ url_for('static',filename='images/user.png')}}" class="profile-pic">
+        </a>
+    </div>
+     
+ 
+        <table id="task-table">
+            <tr>
+                {% for header in headings %}
+                <th>{{header}}</th>
+                {% endfor%}
+            </tr>
+
+            {% for row in data %}
+            <tr>
+                {% for i in row %}
+                <td>{{i}}</td>
+                {% endfor %}
+                <td>
+                     <button onclick="deleteTask('{{ row[0] }}')">
+                        <img src="{{ url_for('static', filename='images/delete.png') }}" class="delete-pic">
+                    </button>
+                </td>
+            </tr>
+                {% endfor%}
+        </table>
+        
+
+<script>
+ function deleteTask(taskId) {
+    fetch("/deleted_task", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "task_id=" + taskId
+    })
+    .then(response => response.json())
+    .then(data => {
+        const table = document.getElementById("task-table");
+        table.innerHTML = `
+            <tr>
+                {% for header in headings %}
+                <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+        `;
+        data.forEach(row => {
+            const tr = document.createElement("tr");
+            row.forEach(cell => {
+                const td = document.createElement("td");
+                td.textContent = cell;
+                tr.appendChild(td);
+            });
+            const tdDelete = document.createElement("td");
+            tdDelete.innerHTML = `
+                <button onclick="deleteTask('${row[0]}')">
+                    <img src="{{ url_for('static', filename='images/delete.png') }}" class="delete-pic">
+                </button>
+            `;
+            tr.appendChild(tdDelete);
+            table.appendChild(tr);
+        });
+    });
+}
+</script>
+
+
+</body>
+</html>
+ 

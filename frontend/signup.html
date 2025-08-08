@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PERSONAL TASK MANAGER</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+    <link href='https://fonts.googleapis.com/css?family=Calistoga' rel='stylesheet'>
+</head>
+<body>
+    <p class="heading">PERSONAL TASK MANAGER</p>
+
+    <div class="login-content">
+        <div class="form-container">
+            <p class="login-signup">SIGNUP</p>
+            <form class="credentials" method="POST" action="/signup">
+                <input type="email" id="username" name="username" placeholder="Enter Email">
+                <input type="text" id="name" name="name" placeholder="Enter Your Name">
+                <input type="password" id="password" name="password" placeholder="Enter Password">
+                <input type="submit" id="submit" value="SUBMIT">
+                 <a href="login" class="back-tologin">Back to Login</a>
+            </form>
+            {% if message %}
+                <p class="status-message">{{ message }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

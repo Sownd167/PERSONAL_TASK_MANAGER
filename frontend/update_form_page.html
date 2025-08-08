@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+    <title>PERSONAL TASK MANAGER</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/update_task.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Calistoga' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Chewy' rel='stylesheet'>
+    
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="/home">
+            <img src="{{url_for('static',filename='images/home.png')}}" class="home-pic">
+        </a>
+        <a href="/profile_page">
+            <img src="{{ url_for('static',filename='images/user.png')}}" class="profile-pic">
+        </a>
+    </div>
+
+    <h2 class = "heading">Update {{ update_type.capitalize() }}</h2>
+
+
+    <div class="content">
+        <form class="update-form" id="update-form" action="{{ url_for('process_update') }}" method="POST">
+            <input type="hidden" name="update_type" value="{{ update_type }}">
+            <input type="text" name="task_id" placeholder="Enter Task ID" required>
+
+            {% if update_type == 'name' %}
+                <input type="text" name="new_name" placeholder="Enter New Task Name" required>
+
+            {% elif update_type == 'desc' %}
+                <input type="text" name="new_desc" placeholder="Enter New Description" required>
+
+            {% elif update_type == 'due' %}
+                <input type="date" name="new_due" required>
+
+            {% elif update_type == 'priority' %}
+                <select name="new_priority" required>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+
+            {% elif update_type == 'category' %}
+                <select name="new_category" required>
+                    <option value="Work">Work</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Urgent">Urgent</option>
+                </select>
+
+            {% elif update_type == 'reminder' %}
+                <select name="new_reminder" required>
+                    <option value="2_days_before">2 Days Before</option>
+                    <option value="1_day_before">1 Day Before</option>
+                </select>
+            {% endif %}
+
+            <input type="submit" id="submit" value="Update {{ update_type.capitalize() }}">
+        </form>
+             <p class="status-message" id="statusMessage" style="display: none;"></p>
+        <div class="back-link">
+            <a href="{{ url_for('update') }}">← Back to Update Options</a>
+        </div>
+    </div>
+
+
+<script>
+    document.getElementById('update-form').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    const form = event.target;
+    const formData = new FormData(form);
+    const statusMessageElement = document.getElementById('statusMessage');
+
+    fetch("{{ url_for('process_update') }}", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        return response.text(); 
+    })
+    .then(data => {
+        statusMessageElement.textContent = "Task updated successfully!";
+        statusMessageElement.style.display = "block";
+
+        setTimeout(() => {
+            statusMessageElement.textContent = "";
+            statusMessageElement.style.display = "none";
+        }, 3000);
+    })
+    .catch(error => {
+        statusMessageElement.textContent = "Error updating task.";
+        statusMessageElement.style.display = "block";
+
+        setTimeout(() => {
+            statusMessageElement.textContent = "";
+            statusMessageElement.style.display = "none";
+        }, 3000);
+    });
+});
+</script>
+
+
+</body>
+

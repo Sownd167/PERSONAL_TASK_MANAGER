@@ -1,0 +1,93 @@
+body {
+    background-color: #22263e;
+    margin: 0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    background-image: url('../images/taskbg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100vw;
+    z-index: -1;
+}
+
+.home-pic{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 50px;      
+    height: auto;
+    z-index: 1000;
+}
+.profile-pic{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;      
+    height: auto;
+    z-index: 1000;
+}
+
+.welcome{
+    position: absolute;
+    top:50px;
+    left:150px;
+}
+
+.greet{
+    font-family:'Chewy';
+    font-size: 30px;
+    color:#ffadad;
+    font-weight: normal;
+}
+
+.tasks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+  max-width: 600px;
+  margin: auto;
+  top:180px;
+  position: relative;
+}
+
+.tasks > div {
+  background-color: #fff5e9;
+  border-radius: 16px;
+  width:150px;
+  height:100px;
+  padding: 30px 20px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.task-name {
+  font-family:'Calistoga';
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  top:30px;
+  position: relative;
+  color:black;
+}
+
+.right-arrow {
+  width: 24px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+a:hover .right-arrow {
+  transform: translateX(5px);
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+    <title>PERSONAL TASK MANAGER</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/update_task.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Calistoga' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Chewy' rel='stylesheet'>
+   
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="/home">
+            <img src="{{url_for('static',filename='images/home.png')}}" class="home-pic">
+        </a>
+        <a href="/profile_page">
+            <img src="{{ url_for('static',filename='images/user.png')}}" class="profile-pic">
+        </a>
+    </div>
+
+    <div class="tasks">
+        <div class="change-name">
+            <p class="task-name"> Change Task Name</p>
+            <a href="{{ url_for('update_form_page', update_type='name') }}">
+                <img src="{{url_for('static',filename='images/right-arrow.png')}}" class="right-arrow">
+            </a>
+        </div>
+        <div class="change-desc">
+            <p class="task-name"> Change Task description</p>
+            <a href="{{ url_for('update_form_page', update_type='desc') }}">
+                <img src="{{url_for('static',filename='images/right-arrow.png')}}" class="right-arrow">
+            </a>
+        </div>
+        <div class="change-due">
+            <p class="task-name"> Change Due Date</p>
+            <a href="{{ url_for('update_form_page', update_type='due') }}">
+                <img src="{{url_for('static',filename='images/right-arrow.png')}}" class="right-arrow">
+            </a>
+        </div>
+        <div class="change-priority">
+            <p class="task-name"> Change Priority</p>
+            <a href="{{ url_for('update_form_page', update_type='priority') }}">
+                <img src="{{url_for('static',filename='images/right-arrow.png')}}" class="right-arrow">
+            </a>
+        </div>
+        <div class="change-category">
+            <p class="task-name"> Change Category</p>
+            <a href="{{ url_for('update_form_page', update_type='category') }}">
+                <img src="{{url_for('static',filename='images/right-arrow.png')}}" class="right-arrow">
+            </a>
+        </div>
+        <div class="change-reminder">
+            <p class="task-name"> Change Reminder</p>
+            <a href="{{ url_for('update_form_page', update_type='reminder') }}">
+                <img src="{{url_for('static',filename='images/right-arrow.png')}}" class="right-arrow">
+            </a>
+        </div>
+    </div>
+
+   
+</body>

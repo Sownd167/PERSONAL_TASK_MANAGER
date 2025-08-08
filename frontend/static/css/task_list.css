@@ -1,0 +1,67 @@
+body {
+    background-color: #22263e;
+    margin: 0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    background-image: url('../images/taskbg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100vw;
+    z-index: -1;
+}
+
+.home-pic{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 50px;      
+    height: auto;
+    z-index: 1000;
+}
+.profile-pic{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;      
+    height: auto;
+    z-index: 1000;
+}
+
+table {
+ 
+  width: 1000px;
+  position: relative;
+  top: 20vh;
+  left: 30vh;
+  border-radius: 5px;
+  font-family: 'Calistoga', cursive;
+  color: black;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+th{
+    background-color: #1cabb0;
+    font-weight: normal;
+    font-size:16px;
+}
+
+td{
+    font-family: 'Cambria';
+    font-weight: normal;
+}
+
+th,td{
+  padding: 10px;
+  border: 1px solid #627d7e;
+  text-align: left;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+ <head>
+    <title>PERSONAL TASK MANAGER</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/create_task.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Calistoga' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Chewy' rel='stylesheet'>
+ </head>
+ <body>
+    <div class = "nav-bar">
+        <a href = "/home">
+         <img src = "{{url_for('static',filename='images/home.png')}}" class="home-pic">
+        </a>
+        <a href = "/profile_page">
+         <img src = "{{ url_for('static',filename='images/user.png')}}" class="profile-pic">
+        </a>
+    </div>
+
+    <div class = "content">
+        <form class ="create-content" action="/create_task" method="POST">
+                <input type="text" id="taskname" name="taskname" placeholder="Enter the Task Name">
+                <input type="paragraph" id="desc" name="desc" placeholder="Description">
+               <div class="two-column">
+                    <div class="column-left">
+                        <input type="date" id="due" name="due" placeholder="Due date">
+                       <select id="category" name="category">
+                        <option value="" disabled selected>Select Category</option>
+                        <option value="Work">Work</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Urgent">Urgent</option>
+                        </select>
+                         <input type="submit" id="clear" value="CLEAR">
+                    </div>
+                    <div class="column-right">
+                        <select id="priority" name="priority">
+                        <option value="" disabled selected>Select Priority</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                        </select>
+                       <select id="remainder" name="remainder">
+                        <option value="" disabled selected>Set Reminder</option>
+                        <option value="2_days_before">2 Days Before</option>
+                        <option value="1_day_before">1 Day Before</option>
+                        </select>
+                        <input type="submit" id="submit" value="SUBMIT">
+                    </div>
+                </div>
+        </form>
+        {% if message %}
+        <p class="status-message" id="statusMessage">{{ message }}</p>
+        {% endif %}
+    </div>
+
+<script>
+  window.onload = function() {
+    const messageEl = document.getElementById("statusMessage");
+    if (messageEl) {
+      setTimeout(() => {
+        messageEl.style.display = "none";
+      }, 3000); // 3 seconds
+    }
+  };
+</script>
+
+</body>
+</html>

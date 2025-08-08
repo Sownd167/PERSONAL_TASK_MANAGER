@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+ <head>
+    <title>PERSONAL TASK MANAGER</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Calistoga' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Chewy' rel='stylesheet'>
+ </head>
+ <body>
+    <div class = "nav-bar">
+        <a href = "/home">
+         <img src = "{{url_for('static',filename='images/home.png')}}" class="home-pic">
+        </a>
+        <a href = "/profile_page">
+         <img src = "{{ url_for('static',filename='images/user.png')}}" class="profile-pic">
+        </a>
+    </div>
+
+    <div class="welcome">
+      <p class = "greet">WELCOME, PRIORITISE YOUR TASKS HERE</p>
+    </div>
+    <div class = "tasks">
+       <div class = "create-task">
+          <p class = "task-name"> Create Task</p>
+          <a href = "create_task">
+            <img src = "{{url_for('static',filename='images/right-arrow.png')}}" class="right-arrow">
+          </a>
+       </div>
+       <div class = "update-task">
+         <p class = "task-name"> Update Task</p>
+          <a href = "update_task">
+            <img src = "{{url_for('static',filename='images/right-arrow.png')}}" class="right-arrow">
+          </a>
+       </div>
+       <div class = "task-list">
+         <p class = "task-name"> Task List</p>
+          <a href = "task_list">
+            <img src = "{{url_for('static',filename='images/right-arrow.png')}}" class="right-arrow">
+          </a>
+       </div>
+       <div class = "delete-task">
+         <p class = "task-name"> Delete Task</p>
+          <a href = "delete_task">
+            <img src = "{{url_for('static',filename='images/right-arrow.png')}}" class="right-arrow">
+          </a>
+       </div>
+    </div>
+
+
+ </body>
+ </html>

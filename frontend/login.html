@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PERSONAL TASK MANAGER</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Calistoga' rel='stylesheet'>
+   
+</head>
+<body>
+    <p class="heading">PERSONAL TASK MANAGER</p>
+
+    <div class="login-content">
+        <div class="form-container">
+            <p class="login-signup">LOGIN</p>
+            <form class="credentials" method="POST" action="/login">
+                <input type="email" id="username" name="username" placeholder="Enter Email">
+                <input type="password" id="password" name="password" placeholder="Enter Password">
+                <a href="#" class="forgot-password">Forgot your password?</a>
+                <input type="submit" id="submit" value="SUBMIT">
+                <a href="/" class="back-toindex">
+                    <img src="{{ url_for('static', filename='images/left-arrow.png') }}" alt="Back to Home" class="back-arrow" width=30px height=30px style="left:60%; position:relative;">
+                </a>
+            </form>
+            {% if message %}
+  <p class="status-message" id="statusMessage">{{ message }}</p>
+
+  <script>
+    window.onload = function() {
+        const msg = document.getElementById("statusMessage");
+        if (msg && msg.textContent === "LOGIN SUCCESSFUL!") {
+        setTimeout(() => {
+           msg.style.display = "none";
+           window.location.href = "/home"; 
+          }, 3000);
+        }
+    };
+  </script>
+{% endif %}
+        </div>
+    </div>
+</body>
+</html>
